@@ -44,7 +44,7 @@ public class Dealer {
 	public Card[] dealFiveCards() {
 //		return new Card[] { pack.pop(), pack.pop(), pack.pop(), pack.pop(),
 	//			pack.pop() };
-		return new Card[] { new Card(13,"hearts"), pack.pop(), pack.pop(), pack.pop(),
+		return new Card[] {pack.pop(), pack.pop(), pack.pop(), pack.pop(),
 							pack.pop() };
 
 	}
