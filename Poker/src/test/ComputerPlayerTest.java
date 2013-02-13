@@ -21,23 +21,19 @@ public class ComputerPlayerTest {
 	private ComputerPlayer computerPlayer;
 
 	@Before
-	public  void setUp() throws Exception {
+	public void setUp() throws Exception {
 		d = Dealer.getInstance();
 		computerHand = new Hand(d.dealFiveCards());
 		computerPlayer = new ComputerPlayer();
-
 	}
 	
 	
 	@Test
 	public void test() {
-
 		computerPlayer.setHand(computerHand);
-		//String computersHand = computerPlayer.showHand();
+		String computersHand = computerPlayer.showHand();
 		String expectedOutput = "hahahahahahah";
 		String actualOutput = computerPlayer.showHand();
-;
-//		computerPlayer.setHand(computerHand2);
 		assertEquals("Wrong!",expectedOutput, actualOutput);
 
 		

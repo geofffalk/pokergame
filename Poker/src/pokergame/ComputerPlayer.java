@@ -19,35 +19,51 @@ public class ComputerPlayer {
 	private String[] valueNames = new String[] { "Ace", "Two", "Three", "Four", "Five",
 			"Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King" };
 	
+	/**Constructor, sets the initial values for variables
+	 */
 	public ComputerPlayer() {
-cardsToKeep = new boolean[5];
-topRankingValue = 0;
-topRankingValue2 = 0;
+		cardsToKeep = new boolean[5];
+		topRankingValue = 0;
+		topRankingValue2 = 0;
 	}
 
+	/**Sets the Computer's Hand to given hand 
+	 * @param hand, the given hand
+	 */
 	public void setHand(Hand hand) {
 		myHand = hand;
-
 	}
 
+	/**Checks the Computer's hand 
+	 * @return myHand, hand the computer is holding
+	 */
 	public Hand getHand() {
-		// TODO Auto-generated method stub
 		return myHand;
 	}
 
+	/**Shows the hand of the computer
+	 * @return myHand the computer's hand in string format. 
+	 */
 	public String showHand() {
 		return myHand.toString();
 	}
 
+	
+	/**Uses a boolean to establish whether a card should be kept or not
+	 * @param keepCards given boolean when it set to true the card is kept
+	 */
 	private void resetCardsToKeep(boolean keepCards) {
 		for (int i = 0; i < 5; i++) {
 			cardsToKeep[i] = keepCards;
 		}
 	}
 
+	/**Analyses the cards in the current hand and returns a status 
+	 * @return a string giving the status of the computer's hand
+	 */
 	public String analyseHand() {
 		poker = threeOfAKind = twoOfAKind = twoPairs = flush = straight = false;
-		// test for flush
+		// test for flush (same suit)
 		if (myHand.getCardSuit(0).equals(myHand.getCardSuit(1))
 				&& myHand.getCardSuit(1).equals(myHand.getCardSuit(2))
 				&& myHand.getCardSuit(2).equals(myHand.getCardSuit(3))
@@ -140,6 +156,9 @@ topRankingValue2 = 0;
 
 	}
 
+	/**Gets the cards to keep
+	 * @return cardsToKeep[], an array of booleans that whether each card in a hand should be kept or not
+	 */
 	public boolean[] getCardsToKeep() {
 		return cardsToKeep;
 	}
