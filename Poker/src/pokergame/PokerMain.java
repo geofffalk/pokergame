@@ -5,7 +5,7 @@ package pokergame;
 public class PokerMain {
 	private static Dealer d;
 	private static Hand computerHand;
-	private static ComputerPlayer computerPlayer;
+	private static Player computerPlayer;
 
 	public static void main(String[] args) {
 		d = Dealer.getInstance();

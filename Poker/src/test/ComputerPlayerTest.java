@@ -11,6 +11,7 @@ import org.junit.Test;
 import pokergame.ComputerPlayer;
 import pokergame.Dealer;
 import pokergame.Hand;
+import pokergame.Player;
 
 
 
@@ -18,7 +19,7 @@ public class ComputerPlayerTest {
 
 	private Dealer d;
 	private Hand computerHand;
-	private ComputerPlayer computerPlayer;
+	private Player computerPlayer;
 
 	@Before
 	public void setUp() throws Exception {

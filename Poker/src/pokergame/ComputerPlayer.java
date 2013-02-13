@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ComputerPlayer {
+public class ComputerPlayer implements Player {
 
 	private Hand myHand;
 	private boolean[] cardsToKeep;
@@ -27,23 +27,26 @@ public class ComputerPlayer {
 		topRankingValue2 = 0;
 	}
 
-	/**Sets the Computer's Hand to given hand 
-	 * @param hand, the given hand
+	/* (non-Javadoc)
+	 * @see pokergame.Player#setHand(pokergame.Hand)
 	 */
+	@Override
 	public void setHand(Hand hand) {
 		myHand = hand;
 	}
 
-	/**Checks the Computer's hand 
-	 * @return myHand, hand the computer is holding
+	/* (non-Javadoc)
+	 * @see pokergame.Player#getHand()
 	 */
+	@Override
 	public Hand getHand() {
 		return myHand;
 	}
 
-	/**Shows the hand of the computer
-	 * @return myHand the computer's hand in string format. 
+	/* (non-Javadoc)
+	 * @see pokergame.Player#showHand()
 	 */
+	@Override
 	public String showHand() {
 		return myHand.toString();
 	}
@@ -58,9 +61,10 @@ public class ComputerPlayer {
 		}
 	}
 
-	/**Analyses the cards in the current hand and returns a status 
-	 * @return a string giving the status of the computer's hand
+	/* (non-Javadoc)
+	 * @see pokergame.Player#analyseHand()
 	 */
+	@Override
 	public String analyseHand() {
 		poker = threeOfAKind = twoOfAKind = twoPairs = flush = straight = false;
 		// test for flush (same suit)
@@ -156,9 +160,10 @@ public class ComputerPlayer {
 
 	}
 
-	/**Gets the cards to keep
-	 * @return cardsToKeep[], an array of booleans that whether each card in a hand should be kept or not
+	/* (non-Javadoc)
+	 * @see pokergame.Player#getCardsToKeep()
 	 */
+	@Override
 	public boolean[] getCardsToKeep() {
 		return cardsToKeep;
 	}
