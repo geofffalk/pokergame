@@ -20,8 +20,8 @@ public class Card implements Comparable<Card> {
 		if (v > 0 && v < 14) {
 			this.setValue(v);
 		}
-		valueNames = new String[] { "Ace", "Two", "Three", "Four", "Five",
-				"Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King" };
+		valueNames = new String[] { "Two", "Three", "Four", "Five",
+				"Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King", "Ace" };
 	}
 
 	

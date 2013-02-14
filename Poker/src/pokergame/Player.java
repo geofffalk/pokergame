@@ -27,4 +27,8 @@ public interface Player {
 	 */
 	public abstract boolean[] getCardsToKeep();
 
+	public abstract int getHandScore(Hand finalHand);
+
+	public abstract void checkHumanHand();
+
 }

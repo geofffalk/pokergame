@@ -18,10 +18,8 @@ public class Hand {
 	
 	@Override
 	public String toString() {
-		return  cards.get(0).toString() + "\n"
-				+ cards.get(1).toString() + "\n" + cards.get(2).toString()
-				+ "\n" + cards.get(3).toString() + "\n"
-				+ cards.get(4).toString() + "\n";
+		return  "1 " + cards.get(0).toString() + "\n" + "2 " + cards.get(1).toString() + "\n" + "3 " + cards.get(2).toString() + "\n" 
+				+ "4 " + cards.get(3).toString() + "\n" + "5 " + cards.get(4).toString() + "\n";
 	}
 
 	/**Sorts the cards in a hand by suit 
@@ -59,10 +57,4 @@ public class Hand {
 	public int getCardValue(int i) {
 		return cards.get(i).getValue();
 	}
-
-	public void discardCard (int i) {
-	}
-	
-
-
 }

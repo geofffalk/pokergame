@@ -16,8 +16,8 @@ public class ComputerPlayer implements Player {
 	private boolean twoPairs;
 	private boolean flush;
 	private boolean straight;
-	private String[] valueNames = new String[] { "Ace", "Two", "Three", "Four", "Five",
-			"Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King" };
+	private String[] valueNames = new String[] { "Two", "Three", "Four", "Five",
+			"Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King", "Ace" };
 	
 	/**Constructor, sets the initial values for variables
 	 */
@@ -50,6 +50,17 @@ public class ComputerPlayer implements Player {
 	public String showHand() {
 		return myHand.toString();
 	}
+	
+	
+	/* (non-Javadoc)
+	 * @see pokergame.Player#getHandScore(pokergame.Hand)
+	 */
+	@Override
+	public int getHandScore(Hand myHand) {
+		int score = (myHand.getCardValue(0)+myHand.getCardValue(1)+myHand.getCardValue(2)
+				+myHand.getCardValue(3)+myHand.getCardValue(4));
+		return score;
+	}
 
 	
 	/**Uses a boolean to establish whether a card should be kept or not
@@ -66,6 +77,7 @@ public class ComputerPlayer implements Player {
 	 */
 	@Override
 	public String analyseHand() {
+		getHandScore(myHand);
 		poker = threeOfAKind = twoOfAKind = twoPairs = flush = straight = false;
 		// test for flush (same suit)
 		if (myHand.getCardSuit(0).equals(myHand.getCardSuit(1))
