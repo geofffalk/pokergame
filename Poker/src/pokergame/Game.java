@@ -2,19 +2,11 @@ package pokergame;
 
 public class Game{
 	private static Dealer d;
-	private static Hand computerHand1;
-	private static Hand computerHand2;
-	private static Player computerPlayer1;
-	private static Player computerPlayer2;
-	private String finalHand1;
-	private String finalHand2;
-	
 	private static Hand computerHand;
 	private static Hand humanHand;
 	private static Player computerPlayer;
 	private static Player humanPlayer;
 
-		
 	public void ComputerVersusHuman() {
 		d = Dealer.getInstance();
 		
@@ -30,12 +22,11 @@ public class Game{
 		System.out.println("Computer's hand is: \n\n" + computerPlayer.showHand());
 		System.out.println("Your hand is: \n\n" + humanPlayer.showHand());
 		
-		System.out.println("Analysis of computer's hand so far: "+ computerPlayer.analyseHand());
-		((HumanPlayer) humanPlayer).checkHand();
+		//System.out.println("Analysis of computer's hand so far: "+ computerPlayer.analyseHand());
+		((HumanPlayer) humanPlayer).checkUserChoice();
 		
 		boolean[] cardsComputerWantsToKeep = computerPlayer.getCardsToKeep();
 		boolean[] cardsHumanWantsToKeep = humanPlayer.getCardsToKeep();
-		
 		
 		Card[] newComputerCards = new Card[5];
 		int cardsToChange1 = 0;
@@ -58,31 +49,25 @@ public class Game{
 				newHumanCards[i] = d.dealACard();
 			}
 		}
+	
+		computerPlayer.setHand(computerHand);
+		humanPlayer.setHand(humanHand);
 		
-		Hand newComputerHand = new Hand(newComputerCards);
-		Hand newHumanHand = new Hand(newHumanCards);
+		System.out.println("\nComputer has changed "+cardsToChange1+" cards.");
+		System.out.println("\nYou changed "+cardsToChange2+" cards.");
 		
-		computerPlayer.setHand(newComputerHand);
-		humanPlayer.setHand(newHumanHand);
-		
-		System.out.println("\nComputer 1 has changed "+cardsToChange1+" cards.");
-		System.out.println("\nYou have changed "+cardsToChange2+" cards.");
-		
-		System.out.println("\nComputer 1's final hand is: \n\n" + computerPlayer.showHand());
+		System.out.println("\nComputer's final hand is: \n\n" + computerPlayer.showHand());
 		System.out.println("\nYour final hand is: \n\n" + humanPlayer.showHand());
 		
 		String finalHand1 = computerPlayer.analyseHand();
 		String finalHand2 = humanPlayer.analyseHand();
 		
-		System.out.println("Analysis of final computer's hand: " + finalHand1);
-		System.out.println("Analysis of final human hand: " + finalHand2);
+		System.out.println("Computer's final analysis: " + finalHand1);
+		System.out.println("Your final analysis: " + finalHand2);
 		
 		int final1 = evaluateFinalHand(finalHand1);
 		int final2 = evaluateFinalHand(finalHand2);
 		
-	
-		
-		//NEED TO BE ABLE TO COMPARE TWO PAIRS 
 		if(final1<final2){
 			System.out.println("THE COMPUTER HAS WON!!");
 		}
@@ -92,8 +77,9 @@ public class Game{
 		}
 		else if(final1 == final2)
 		{
-		int computerScore = computerPlayer.getHandScore(newComputerHand);
-		int humanScore = humanPlayer.getHandScore(newHumanHand);
+			int computerScore = computerPlayer.getHandScore(computerHand);
+			int humanScore = humanPlayer.getHandScore(humanHand);
+			
 		 	if(computerScore > humanScore){
 		 		System.out.println("THE COMPUTER HAS WON, BUT IT WAS CLOSE!!");
 		 	}
@@ -104,11 +90,13 @@ public class Game{
 		 		System.out.println("ITS A TIE!!");
 		 	}
 		}
-		
-		
 	}
 	
-	//NEED TO DO THIS BETTER - THIS IS VERY SIMPLE
+	/**Gives a basic score to a hand, 
+	 * so that hands can be ranked and a winner established
+	 * @param s the string returned in analyseHand()
+	 * @return bestHand, an int value for the card
+	 */
 	public int evaluateFinalHand(String s){
 		int bestHand;
 		if (s == "I GOT A STRAIGHT FLUSH !! "){
@@ -133,6 +121,13 @@ public class Game{
 	}
 	
 	}
+
+//private static Hand computerHand1;
+//private static Hand computerHand2;
+//private static Player computerPlayer1;
+//private static Player computerPlayer2;
+//private String finalHand1;
+//private String finalHand2;
 
 //
 ///**Runs a game with two computer players

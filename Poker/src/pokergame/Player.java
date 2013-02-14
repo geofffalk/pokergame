@@ -2,6 +2,7 @@ package pokergame;
 
 public abstract class Player {
 
+
 	protected Hand myHand;
 	protected boolean[] cardsToKeep;
 	protected Integer topRankingValue;
@@ -75,6 +76,7 @@ public abstract class Player {
 	protected boolean[] getCardsToKeep(){
 		return cardsToKeep;
 	}
+	
 	
 	
 	/**Analyses the cards in the current hand and returns a status

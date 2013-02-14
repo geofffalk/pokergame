@@ -9,8 +9,7 @@ public class HumanPlayer extends Player {
 
  /**Asks the user which cards he/she wishes to change
  */
-protected void checkHand() {
-		getHandScore(myHand);
+protected void checkUserChoice() {
 		System.out.println("Please enter the numbers of the cards you wish to keep for example: 1,3");
 		Scanner in = new Scanner(System.in);
 		String input = in.nextLine();
@@ -63,7 +62,6 @@ protected void checkHand() {
 				case 4:
 					poker = true;
 					topRankingValue = entry.getKey();
-					
 				case 3:
 					topRankingValue = entry.getKey();
 					threeOfAKind = true;

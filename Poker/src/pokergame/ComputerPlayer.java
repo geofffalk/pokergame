@@ -12,7 +12,6 @@ public class ComputerPlayer extends Player {
 	 */
 	@Override
 	protected String analyseHand() {
-		getHandScore(myHand);
 		poker = threeOfAKind = twoOfAKind = twoPairs = flush = straight = false;
 		// test for flush (same suit)
 		if (myHand.getCardSuit(0).equals(myHand.getCardSuit(1))
