@@ -4,79 +4,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ComputerPlayer implements Player {
-
-	private Hand myHand;
-	private boolean[] cardsToKeep;
-	private Integer topRankingValue;
-	private Integer topRankingValue2;
-	private boolean poker;
-	private boolean threeOfAKind;
-	private boolean twoOfAKind;
-	private boolean twoPairs;
-	private boolean flush;
-	private boolean straight;
-	private String[] valueNames = new String[] { "Two", "Three", "Four", "Five",
-			"Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King", "Ace" };
-	
-	/**Constructor, sets the initial values for variables
-	 */
-	public ComputerPlayer() {
-		cardsToKeep = new boolean[5];
-		topRankingValue = 0;
-		topRankingValue2 = 0;
-	}
-
-	/* (non-Javadoc)
-	 * @see pokergame.Player#setHand(pokergame.Hand)
-	 */
-	@Override
-	public void setHand(Hand hand) {
-		myHand = hand;
-	}
-
-	/* (non-Javadoc)
-	 * @see pokergame.Player#getHand()
-	 */
-	@Override
-	public Hand getHand() {
-		return myHand;
-	}
-
-	/* (non-Javadoc)
-	 * @see pokergame.Player#showHand()
-	 */
-	@Override
-	public String showHand() {
-		return myHand.toString();
-	}
-	
-	
-	/* (non-Javadoc)
-	 * @see pokergame.Player#getHandScore(pokergame.Hand)
-	 */
-	@Override
-	public int getHandScore(Hand myHand) {
-		int score = (myHand.getCardValue(0)+myHand.getCardValue(1)+myHand.getCardValue(2)
-				+myHand.getCardValue(3)+myHand.getCardValue(4));
-		return score;
-	}
+public class ComputerPlayer extends Player {
 
 	
-	/**Uses a boolean to establish whether a card should be kept or not
-	 * @param keepCards given boolean when it set to true the card is kept
-	 */
-	private void resetCardsToKeep(boolean keepCards) {
-		for (int i = 0; i < 5; i++) {
-			cardsToKeep[i] = keepCards;
-		}
-	}
-
 	/* (non-Javadoc)
 	 * @see pokergame.Player#analyseHand()
 	 */
 	@Override
-	public String analyseHand() {
+	protected String analyseHand() {
 		getHandScore(myHand);
 		poker = threeOfAKind = twoOfAKind = twoPairs = flush = straight = false;
 		// test for flush (same suit)
@@ -86,7 +21,6 @@ public class ComputerPlayer implements Player {
 				&& myHand.getCardSuit(3).equals(myHand.getCardSuit(4))) {
 			flush = true;
 			resetCardsToKeep(true);
-
 		}
 		// test for straight
 		myHand.sortCardsByValue();
@@ -172,12 +106,5 @@ public class ComputerPlayer implements Player {
 
 	}
 
-	/* (non-Javadoc)
-	 * @see pokergame.Player#getCardsToKeep()
-	 */
-	@Override
-	public boolean[] getCardsToKeep() {
-		return cardsToKeep;
-	}
-
 }
+
