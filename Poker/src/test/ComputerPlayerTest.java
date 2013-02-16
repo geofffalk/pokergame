@@ -13,8 +13,6 @@ import pokergame.Dealer;
 import pokergame.Hand;
 import pokergame.Player;
 
-
-
 public class ComputerPlayerTest {
 
 	private Dealer d;

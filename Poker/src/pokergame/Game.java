@@ -7,7 +7,9 @@ public class Game{
 	private static Player computerPlayer;
 	private static Player humanPlayer;
 
+	
 	public void ComputerVersusHuman() {
+		
 		d = Dealer.getInstance();
 		
 		computerHand = new Hand(d.dealFiveCards());
@@ -22,6 +24,7 @@ public class Game{
 		System.out.println("Computer's hand is: \n\n" + computerPlayer.showHand());
 		System.out.println("Your hand is: \n\n" + humanPlayer.showHand());
 		
+		//SHOULD WE PRINT THIS SINCE - ASSIGNMENT SAYS DEAL FACE DOWN?
 		//System.out.println("Analysis of computer's hand so far: "+ computerPlayer.analyseHand());
 		((HumanPlayer) humanPlayer).checkUserChoice();
 		
@@ -31,7 +34,7 @@ public class Game{
 		Card[] newComputerCards = new Card[5];
 		int cardsToChange1 = 0;
 		for (int i = 0; i < 5; i++) {
-			if (cardsComputerWantsToKeep[i]) {
+			if (cardsComputerWantsToKeep[i]==true) {
 				newComputerCards[i] = computerHand.getCard(i);
 			} else {
 				cardsToChange1++;
@@ -49,9 +52,12 @@ public class Game{
 				newHumanCards[i] = d.dealACard();
 			}
 		}
-	
-		computerPlayer.setHand(computerHand);
-		humanPlayer.setHand(humanHand);
+		
+		Hand newComputerHand = new Hand(newComputerCards);
+		Hand newHumanHand = new Hand(newHumanCards);
+		
+		computerPlayer.setHand(newComputerHand);
+		humanPlayer.setHand(newHumanHand);
 		
 		System.out.println("\nComputer has changed "+cardsToChange1+" cards.");
 		System.out.println("\nYou changed "+cardsToChange2+" cards.");

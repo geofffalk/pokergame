@@ -1,5 +1,7 @@
 package pokergame;
 
+import java.util.Arrays;
+
 public abstract class Player {
 
 
@@ -76,7 +78,6 @@ public abstract class Player {
 	protected boolean[] getCardsToKeep(){
 		return cardsToKeep;
 	}
-	
 	
 	
 	/**Analyses the cards in the current hand and returns a status

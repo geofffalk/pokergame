@@ -10,17 +10,30 @@ public class HumanPlayer extends Player {
  /**Asks the user which cards he/she wishes to change
  */
 protected void checkUserChoice() {
-		System.out.println("Please enter the numbers of the cards you wish to keep for example: 1,3");
-		Scanner in = new Scanner(System.in);
-		String input = in.nextLine();
-		resetCardsToKeep(false);
-		for (int i = 0;i < input.length(); i++){
-			if(Character.isDigit(input.charAt(i))) {
-				int cardNumber = Character.getNumericValue(input.charAt(i)-1);
-		    	cardsToKeep[cardNumber] = true;
-		     }
-		}
-	}
+	
+			System.out.println("Do you wish to change some cards? - Please enter Y/N"); 
+			Scanner user_input = new Scanner(System.in);
+			String input = user_input.nextLine();
+			if((input.toLowerCase().equals("y"))||(input.toLowerCase().equals("yes"))){
+				System.out.println("Please enter the numbers of the cards you wish to KEEP - for example: 1,3");	
+				String input2 = user_input.nextLine();
+				resetCardsToKeep(false);
+				for (int i = 0;i < input2.length(); i++){
+					if(Character.isDigit(input2.charAt(i))){
+						int cardNumber = Character.getNumericValue(input2.charAt(i)-1);
+				    	cardsToKeep[cardNumber] = true;
+				     }
+				}
+			}
+			else if((input.toLowerCase().equals("n"))||(input.toLowerCase().equals("no"))){
+				for (int i = 0;i < 5; i++){
+					cardsToKeep[i]=true;
+				}
+			}
+			user_input.close();
+			}
+
+
 
 	/* (non-Javadoc)
 	 * @see pokergame.Player#analyseHand()
