@@ -6,19 +6,19 @@ import java.util.Map;
 
 public abstract class Player {
 
-	protected Hand myHand;
-	protected boolean[] cardsToKeep;
-	protected Integer topRankingValue;
-	protected Integer topRankingValue2;
-	protected boolean twoOfAKind;
-	protected boolean flush;
-	protected boolean straight;
-	protected String matchingCards ="";
-	protected String[] valueNames = new String[] { "Two", "Three", "Four", "Five",
+	public Hand myHand;
+	public boolean[] cardsToKeep;
+	public Integer topRankingValue;
+	public Integer topRankingValue2;
+	public boolean twoOfAKind;
+	public boolean flush;
+	public boolean straight;
+	public String matchingCards ="";
+	public String[] valueNames = new String[] { "Two", "Three", "Four", "Five",
 			"Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King", "Ace" };
-	protected Map<Integer, ArrayList<Integer>> cardMap;
+	public Map<Integer, ArrayList<Integer>> cardMap;
 
-	protected Player() {
+	public Player() {
 		cardsToKeep = new boolean[5];
 		topRankingValue = 0;
 		topRankingValue2 = 0;
@@ -27,12 +27,12 @@ public abstract class Player {
 	/**Checks what cards the player wishes to swap
 	 * The implementation of this method will differ depending on the whether it is for human ot 
 	 */
-	protected abstract void SwapCardChoice();
+	public abstract void SwapCardChoice();
 	
 	/**Sets the Hand to given hand 
 	 * @param hand, the given hand
 	 */
-	protected void setHand(Hand hand){
+	public void setHand(Hand hand){
 		myHand = hand;
 	}
 	
@@ -40,7 +40,7 @@ public abstract class Player {
 	/**Checks the hand 
 	 * @return myHand, hand the computer is holding
 	 */
-	protected Hand getHand(){
+	public Hand getHand(){
 		return myHand;
 	}
 
@@ -48,7 +48,7 @@ public abstract class Player {
 	/**Displays the hand to the screen
 	 * @return myHand in string format. 
 	 */
-	protected String showHand(){
+	public String showHand(){
 		return myHand.toString();
 	}
 	
@@ -59,7 +59,7 @@ public abstract class Player {
 	 * @param finalHand the given hand 
 	 * @return score an int value that shows an overall value for the card values
 	 */
-	protected int getHandScore(Hand finalHand){
+	public int getHandScore(Hand finalHand){
 	int score = (myHand.getCardValue(0)+myHand.getCardValue(1)+myHand.getCardValue(2)
 			+myHand.getCardValue(3)+myHand.getCardValue(4));
 	return score;
@@ -69,7 +69,7 @@ public abstract class Player {
 	/**Uses a boolean to establish whether a card should be kept or not
 	 * @param keepCards given boolean when it set to true the card is kept
 	 */
-	protected void resetCardsToKeep(boolean keepCards) {
+	public void resetCardsToKeep(boolean keepCards) {
 		for (int i = 0; i < 5; i++) {
 			cardsToKeep[i] = keepCards;
 		}
@@ -79,7 +79,7 @@ public abstract class Player {
 	/**Gets the cards to keep
 	 * @return cardsToKeep[], an array of booleans that whether each card in a hand should be kept or not
 	 */
-	protected boolean[] getCardsToKeep(){
+	public boolean[] getCardsToKeep(){
 		return cardsToKeep;
 	}
 	
@@ -87,7 +87,7 @@ public abstract class Player {
 	/**Analyses the cards in the current hand checking for various potential status
 	 * @return a string giving the status of the computer's hand
 	 */
-	protected String AnalyseHand(){
+	public String AnalyseHand(){
 		flush = checkFlush(myHand);
 		straight = checkStraight(myHand);
 		cardMap = setCardMap(myHand);
@@ -101,7 +101,7 @@ public abstract class Player {
 	* @param myHand, the given hand
 	* @return flush true if flush found
 	*/
-	protected boolean checkFlush(Hand myHand){
+	public boolean checkFlush(Hand myHand){
 		flush = false;
 		if (myHand.getCardSuit(0).equals(myHand.getCardSuit(1))
 			&& myHand.getCardSuit(1).equals(myHand.getCardSuit(2))
@@ -141,7 +141,7 @@ public abstract class Player {
 	 * @param myHand, the given hand
 	 * @return cardMap, the hash map for the given hand 
 	 */
-	protected Map<Integer, ArrayList<Integer>> setCardMap(Hand myHand){
+	public Map<Integer, ArrayList<Integer>> setCardMap(Hand myHand){
 		Map<Integer, ArrayList<Integer>> cardMap = new HashMap<>();
 		int counter = 1;
 		while (counter < 14) {

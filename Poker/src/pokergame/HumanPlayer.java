@@ -9,7 +9,7 @@ public class HumanPlayer extends Player {
 /* (non-Javadoc)
  * @see pokergame.Player#SwapCardChoice()
  */
-protected void SwapCardChoice() {
+public void SwapCardChoice() {
 		System.out.println("Do you wish to change some of your cards? - Please enter Y/N"); 
 		Scanner user_input = new Scanner(System.in);
 		String input = user_input.nextLine();
