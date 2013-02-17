@@ -25,11 +25,14 @@ public class Game{
 		System.out.println("Your hand is: \n\n" + humanPlayer.showHand());
 		
 		//SHOULD WE PRINT THIS SINCE - ASSIGNMENT SAYS DEAL FACE DOWN?
-		//System.out.println("Analysis of computer's hand so far: "+ computerPlayer.analyseHand());
-		((HumanPlayer) humanPlayer).checkUserChoice();
+		System.out.println("SO FAR - COMPUTER'S "+ computerPlayer.AnalyseHand());
+		
+		computerPlayer.SwapCardChoice();
+		humanPlayer.SwapCardChoice();
 		
 		boolean[] cardsComputerWantsToKeep = computerPlayer.getCardsToKeep();
 		boolean[] cardsHumanWantsToKeep = humanPlayer.getCardsToKeep();
+		
 		
 		Card[] newComputerCards = new Card[5];
 		int cardsToChange1 = 0;
@@ -39,7 +42,7 @@ public class Game{
 			} else {
 				cardsToChange1++;
 				newComputerCards[i] = d.dealACard();
-			}
+		}
 		}
 		
 		Card[] newHumanCards = new Card[5];
@@ -49,7 +52,7 @@ public class Game{
 				newHumanCards[i] = humanHand.getCard(i);
 			} else {
 				cardsToChange2++;
-				newHumanCards[i] = d.dealACard();
+			newHumanCards[i] = d.dealACard();
 			}
 		}
 		
@@ -65,23 +68,24 @@ public class Game{
 		System.out.println("\nComputer's final hand is: \n\n" + computerPlayer.showHand());
 		System.out.println("\nYour final hand is: \n\n" + humanPlayer.showHand());
 		
-		String finalHand1 = computerPlayer.analyseHand();
-		String finalHand2 = humanPlayer.analyseHand();
+		String finalHand1 = computerPlayer.AnalyseHand();
+		String finalHand2 = humanPlayer.AnalyseHand();
 		
-		System.out.println("Computer's final analysis: " + finalHand1);
-		System.out.println("Your final analysis: " + finalHand2);
+		System.out.println("FINAL RESULT!");
+		System.out.println("COMPUTER'S " + finalHand1);
+		System.out.println("YOU HAVE " + finalHand2);
 		
-		int final1 = evaluateFinalHand(finalHand1);
-		int final2 = evaluateFinalHand(finalHand2);
+		int computerFinal = computerPlayer.evaluateHand(finalHand1);
+		int humanFinal = humanPlayer.evaluateHand(finalHand2);
 		
-		if(final1<final2){
+		if(computerFinal >humanFinal){
 			System.out.println("THE COMPUTER HAS WON!!");
 		}
-		else if(final2 < final1)
+		else if(humanFinal > computerFinal)
 		{
 			System.out.println("YOU WON!!!");
 		}
-		else if(final1 == final2)
+		else if((computerFinal == humanFinal)&&(finalHand1 != "GOT NOTHING"))
 		{
 			int computerScore = computerPlayer.getHandScore(computerHand);
 			int humanScore = humanPlayer.getHandScore(humanHand);
@@ -93,40 +97,45 @@ public class Game{
 		 		System.out.println("YOU WON, BUT ONLY JUST!!");
 		 	}
 		 	else if(computerScore == humanScore){
-		 		System.out.println("ITS A TIE!!");
+		 		System.out.println("AMAZING, ITS A TIE!!");
 		 	}
 		}
-	}
-	
-	/**Gives a basic score to a hand, 
-	 * so that hands can be ranked and a winner established
-	 * @param s the string returned in analyseHand()
-	 * @return bestHand, an int value for the card
-	 */
-	public int evaluateFinalHand(String s){
-		int bestHand;
-		if (s == "I GOT A STRAIGHT FLUSH !! "){
-			bestHand = 1;
-		} else if (s.startsWith("I GOT A POKER OF")){
-			bestHand = 2;
-		} else if (s.startsWith("I GOT A FLUSH!!")) {
-			bestHand = 3;
-		} else if (s=="I GOT A STRAIGHT!!") {
-			bestHand = 4;
-		} else if (s.startsWith("I GOT THREE OF A KIND OF")) {
-			bestHand = 5;
-		} else if (s.startsWith("I GOT TWO PAIRS OF ")) {
-			bestHand = 6;
-		} else if (s.startsWith("I GOT A PAIR OF ")){
-			bestHand = 7;
-		} else {
-			bestHand = 8;
+		else if((computerFinal == humanFinal)&&(finalHand1.equals("GOT NOTHING"))){
+			System.out.println("NOBODY WINS - WE BOTH HAVE NOTHING!");
 		}
-		return bestHand;
-	
 	}
 	
-	}
+}
+//	
+//	/**Gives a basic score to a hand, 
+//	 * so that hands can be ranked and a winner established
+//	 * @param s the string returned in analyseHand()
+//	 * @return bestHand, an int value for the card
+//	 */
+//	public int evaluateHand(String s){
+//		int bestHand;
+//		if (s == "GOT A STRAIGHT FLUSH !! "){
+//			bestHand = 1;
+//		} else if (s.startsWith("GOT FOUR OF A KIND")){
+//			bestHand = 2;
+//		} else if (s.startsWith("GOT A FLUSH!!")) {
+//			bestHand = 3;
+//		} else if (s=="GOT A STRAIGHT!!") {
+//			bestHand = 4;
+//		} else if (s.startsWith("GOT THREE OF A KIND OF")) {
+//			bestHand = 5;
+//		} else if (s.startsWith("GOT TWO PAIRS OF ")) {
+//			bestHand = 6;
+//		} else if (s.startsWith("GOT A PAIR OF ")){
+//			bestHand = 7;
+//		} else {
+//			bestHand = 8;
+//		}
+//		return bestHand;
+//	
+//	}
+//	
+	
 
 //private static Hand computerHand1;
 //private static Hand computerHand2;
