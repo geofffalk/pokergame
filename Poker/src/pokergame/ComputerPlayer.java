@@ -13,14 +13,14 @@ public class ComputerPlayer extends Player {
 	 * @see pokergame.Player#SwapCardChoice()
 	 */
 	@Override
-	protected void SwapCardChoice() {
+	public void SwapCardChoice() {
 		if(checkFlush(myHand)){
 			resetCardsToKeep(true);
 		}
 		if(checkStraight(myHand)){
 			resetCardsToKeep(true);
 		}	
-		cardMap = setCardMap(myHand);	
+		cardMap = getCardMap(myHand);	
 		twoOfAKind = false;
 		for (Map.Entry<Integer, ArrayList<Integer>> entry : cardMap.entrySet()) {
 			switch (entry.getValue().size()) {

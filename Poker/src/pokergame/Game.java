@@ -25,7 +25,7 @@ public class Game{
 		System.out.println("Your hand is: \n\n" + humanPlayer.showHand());
 		
 		//SHOULD WE PRINT THIS SINCE - ASSIGNMENT SAYS DEAL FACE DOWN?
-		System.out.println("SO FAR - COMPUTER'S "+ computerPlayer.AnalyseHand());
+		System.out.println("SO FAR - COMPUTER'S "+ computerPlayer.AnalyseHand() + "\n");
 		
 		computerPlayer.SwapCardChoice();
 		humanPlayer.SwapCardChoice();

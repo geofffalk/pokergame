@@ -6,15 +6,15 @@ import java.util.Map;
 
 public abstract class Player {
 
-	public Hand myHand;
-	public boolean[] cardsToKeep;
-	public Integer topRankingValue;
-	public Integer topRankingValue2;
-	public boolean twoOfAKind;
-	public boolean flush;
-	public boolean straight;
-	public String matchingCards ="";
-	public String[] valueNames = new String[] { "Two", "Three", "Four", "Five",
+	protected Hand myHand;
+	protected boolean[] cardsToKeep;
+	protected Integer topRankingValue;
+	protected Integer topRankingValue2;
+	protected boolean twoOfAKind;
+	protected boolean flush;
+	protected boolean straight;
+	protected String matchingCards ="";
+	protected String[] valueNames = new String[] { "Two", "Three", "Four", "Five",
 			"Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King", "Ace" };
 	public Map<Integer, ArrayList<Integer>> cardMap;
 
@@ -163,6 +163,7 @@ public abstract class Player {
 	 * @return finalStatus, a string value that gives the status
 	 */
 	public String checkMatching(Map<Integer, ArrayList<Integer>> cardMap){
+			twoOfAKind = false;
 			for (Map.Entry<Integer, ArrayList<Integer>> entry : cardMap.entrySet()) {
 				switch (entry.getValue().size()) {
 				case 4:
