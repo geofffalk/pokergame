@@ -35,8 +35,8 @@ public abstract class Player {
 	public void setHand(Hand hand){
 		myHand = hand;
 	}
-	
 		
+	
 	/**Checks the hand 
 	 * @return myHand, hand the computer is holding
 	 */
@@ -59,7 +59,7 @@ public abstract class Player {
 	 * @param finalHand the given hand 
 	 * @return score an int value that shows an overall value for the card values
 	 */
-	public int getHandScore(Hand finalHand){
+	public int getHandScore(Hand myHand){
 	int score = (myHand.getCardValue(0)+myHand.getCardValue(1)+myHand.getCardValue(2)
 			+myHand.getCardValue(3)+myHand.getCardValue(4));
 	return score;
@@ -90,7 +90,7 @@ public abstract class Player {
 	public String AnalyseHand(){
 		flush = checkFlush(myHand);
 		straight = checkStraight(myHand);
-		cardMap = setCardMap(myHand);
+		cardMap = getCardMap(myHand);
 		matchingCards = checkMatching(cardMap);
 		String finalStatus = getFinalStatus(myHand);
 		return finalStatus;
@@ -124,10 +124,10 @@ public abstract class Player {
 	public boolean checkStraight(Hand myHand){
 			straight=false;	
 			myHand.sortCardsByValue();
-			if ((myHand.getCardValue(0) - myHand.getCardValue(1) == 1)
-					&& (myHand.getCardValue(1) - myHand.getCardValue(2) == 1)
-					&& (myHand.getCardValue(2) - myHand.getCardValue(3) == 1)
-					&& (myHand.getCardValue(3) - myHand.getCardValue(4) == 1)) {
+			if ((myHand.getCardValue(4) - myHand.getCardValue(3) == 1)
+					&& (myHand.getCardValue(3) - myHand.getCardValue(2) == 1)
+					&& (myHand.getCardValue(2) - myHand.getCardValue(1) == 1)
+					&& (myHand.getCardValue(1) - myHand.getCardValue(0) == 1)) {
 				straight = true;
 			}
 			else{
@@ -141,7 +141,7 @@ public abstract class Player {
 	 * @param myHand, the given hand
 	 * @return cardMap, the hash map for the given hand 
 	 */
-	public Map<Integer, ArrayList<Integer>> setCardMap(Hand myHand){
+	public Map<Integer, ArrayList<Integer>> getCardMap(Hand myHand){
 		Map<Integer, ArrayList<Integer>> cardMap = new HashMap<>();
 		int counter = 1;
 		while (counter < 14) {
@@ -187,56 +187,55 @@ public abstract class Player {
 			return matchingCards;
 	}
 			
-
-/**Gets the correct string to correspond with the hand in question
- * @param myHand
- * @return String exclaiming the value of the cards
- */
-public String getFinalStatus(Hand myHand){
-if (straight && flush) {
-	return "GOT A STRAIGHT FLUSH !! ";
-} else if (flush) {
-	return "GOT A FLUSH!!";
-} else if (straight) {
-	return "GOT A STRAIGHT!!";
-} else if ((matchingCards.equals("four of a Kind"))||(matchingCards.equals("three of a Kind"))||(matchingCards.equals("a pair"))){ 
-	return "GOT " + (matchingCards +" of " + valueNames[topRankingValue-1] + "s").toUpperCase();
-} else if (matchingCards.equals("two pair")){
-	return "GOT TWO PAIRS OF "+ (valueNames[topRankingValue-1] + "s and "+ valueNames[topRankingValue2-1] + "s").toUpperCase();
-} else {
-	return "GOT NOTHING";
-}
-
-}
-/**Assigns a value to the hand so that a winner can be evaluated
- * @param s
- * @return bestHand, the hand's basic score
- */
-public int evaluateHand(String s){
-	int bestHand;
-	if (s.startsWith("GOT A STRAIGHT FLUSH !! ")){
-		bestHand = 1000;
-	} else if (s.startsWith("GOT FOUR OF A KIND")){
-		bestHand = 900;
-	} else if (s.startsWith("GOT A FLUSH!!")){
-		bestHand = 800;
-	} else if (s.startsWith("GOT A STRAIGHT!!")) {
-		bestHand = 700;
-	} else if (s.startsWith("GOT THREE OF A KIND OF")) {
-		bestHand = 600;
-	} else if (s.startsWith("GOT TWO PAIRS OF ")) {
-		bestHand = 500;
-	} else if (s.startsWith("GOT A PAIR OF ")){
-		bestHand = 400;
-	} else {
-		bestHand = 0;
-	}
-	return bestHand;
-}
-
-
-
 	
+	/**Gets the correct string to correspond with the hand in question
+	 * @param myHand
+	 * @return String exclaiming the value of the cards
+	 */
+	public String getFinalStatus(Hand myHand){
+	if (straight && flush) {
+		return "GOT A STRAIGHT FLUSH !! ";
+	} else if (flush) {
+		return "GOT A FLUSH!!";
+	} else if (straight) {
+		return "GOT A STRAIGHT!!";
+	} else if ((matchingCards.equals("four of a Kind"))||(matchingCards.equals("three of a Kind"))||(matchingCards.equals("a pair"))){ 
+		return "GOT " + (matchingCards +" of " + valueNames[topRankingValue-1] + "s").toUpperCase();
+	} else if (matchingCards.equals("two pair")){
+		return "GOT TWO PAIRS OF "+ (valueNames[topRankingValue-1] + "s and "+ valueNames[topRankingValue2-1] + "s").toUpperCase();
+	} else {
+		return "GOT NOTHING";
+	}
+
+	}
+	
+	
+	/**Assigns a value to the hand so that a winner can be evaluated
+	 * @param s
+	 * @return bestHand, the hand's basic score
+	 */
+	public int evaluateHand(String s){
+		int bestHand;
+		if (s.startsWith("GOT A STRAIGHT FLUSH !! ")){
+			bestHand = 1000;
+		} else if (s.startsWith("GOT FOUR OF A KIND")){
+			bestHand = 900;
+		} else if (s.startsWith("GOT A FLUSH!!")){
+			bestHand = 800;
+		} else if (s.startsWith("GOT A STRAIGHT!!")) {
+			bestHand = 700;
+		} else if (s.startsWith("GOT THREE OF A KIND OF")) {
+			bestHand = 600;
+		} else if (s.startsWith("GOT TWO PAIRS OF ")) {
+			bestHand = 500;
+		} else if (s.startsWith("GOT A PAIR OF ")){
+			bestHand = 400;
+		} else {
+			bestHand = 0;
+		}
+		return bestHand;
+	}
+
 	
 }
 	

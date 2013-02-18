@@ -19,7 +19,7 @@ public class Hand {
 	@Override
 	public String toString() {
 		return  "1 " + cards.get(0).toString() + "\n" + "2 " + cards.get(1).toString() + "\n" + "3 " + cards.get(2).toString() + "\n" 
-				+ "4 " + cards.get(3).toString() + "\n" + "5 " + cards.get(4).toString() + "\n";
+				+ "4 " + cards.get(3).toString() + "\n" + "5 " + cards.get(4).toString();
 	}
 
 	/**Sorts the cards in a hand by suit 

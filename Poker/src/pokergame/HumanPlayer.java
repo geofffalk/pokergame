@@ -24,7 +24,7 @@ public void SwapCardChoice() {
 								if(Character.isDigit(input3.charAt(i))){
 								int cardNumber = Character.getNumericValue(input3.charAt(i)-1);
 									cardsToKeep[cardNumber] = true;
-								   }
+								  }
 							}
 						}
 						else if((input2.toLowerCase().equals("y"))||(input2.toLowerCase().equals("yes"))){
